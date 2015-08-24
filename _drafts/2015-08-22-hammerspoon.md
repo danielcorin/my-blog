@@ -10,7 +10,6 @@ Recently, I started working with the OS X automation tool [Hammerspoon][Hammersp
 I use Hammerspoon primarily for hotkeys and as an app and window manager (though it will never fully replace [Alfred][Alfred] for me).
 
 
-
 [Hammerspoon]: http://www.hammerspoon.org/
 [GettingStarted]: http://www.hammerspoon.org/go/
 [Alfred]: https://www.alfredapp.com/
