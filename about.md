@@ -1,22 +1,33 @@
 ---
 layout: page
-title: About
+title: About Dan Corin
 permalink: /about/
 ---
 
-![About image](/assets/me.png)
+<div class="shadow-wrap">
+    <div id="me-picture">
+        <img src="/assets/me.jpg" alt="About image" />
+    </div>
 
-Occupying my small corner of the internet. Enjoy your stay.
+    <p>Occupying my small corner of the internet. Enjoy your stay.</p>
 
-# Me
+    <p>
+        Reader.
+        Cyclist.
+        Engineer.
+        Rower.
+        Physicist.
+        Software Enthusiast.
+        Chocolate Chip Cookie Consumer.
+    </p>
 
-Reader.
-Cyclist.
-Engineer.
-Rower.
-Physicist.
-Software Enthusiast.
-Chocolate Chip Cookie Consumer.
+</div>
 
-S(F\|TL\|RQ)
+<div class="shadow-wrap">
+    <img src="/assets/composite.jpg" alt="Composite" />
+</div>
+
+
+S(<span title="San Francisco">F|</span><span title="St. Louis">TL|</span><span title="Sarasota">RQ</span>)
+
 
