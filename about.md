@@ -4,7 +4,7 @@ title: About Dan Corin
 permalink: /about/
 ---
 
-<div class="shadow-wrap">
+<div class="shadow-box">
     <div id="me-picture">
         <img src="/assets/me.jpg" alt="About image" />
     </div>
@@ -23,7 +23,7 @@ permalink: /about/
 
 </div>
 
-<div class="shadow-wrap">
+<div class="shadow-box">
     <img src="/assets/composite.jpg" alt="Composite" />
 </div>
 
