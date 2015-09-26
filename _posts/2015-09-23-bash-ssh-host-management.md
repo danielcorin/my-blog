@@ -42,7 +42,7 @@ The output of the command is:
 
 for each of your `Host`s in your `config` file.
 
-You can add this to your bash initialization to get access to all your `HostName`s as variables from you ssh `config`.
+You can add this to your bash initialization to get access to all your `HostName`s as variables from your ssh `config`.
 
 `.bashrc`
 
