@@ -38,11 +38,11 @@ First, `cat ~/.ssh/config` creates a stream of our `config` file. Next, `awk '$1
 
 The output of the command is:
     
-    alias myserver='x.x.x.x'
+    myserver='x.x.x.x'
 
 for each of your `Host`s in your `config` file.
 
-You can add this to your bash initialization to get access to all your `HostName`s from you ssh `config`.
+You can add this to your bash initialization to get access to all your `HostName`s as variables from you ssh `config`.
 
 `.bashrc`
 
