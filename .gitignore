@@ -3,3 +3,4 @@ _site
 .jekyll-metadata
 *.pyc
 local_config.py
+.DS_Store
