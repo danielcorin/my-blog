@@ -5,13 +5,15 @@ date:   2015-10-13 7:26:00
 categories: code
 ---
 
-To help facilitate my blogging workflow, I wanted to go from written to published post quickly. My general workflow for writing a blog post is this:
+To help facilitate my blogging workflow, I wanted to go from written to published post quickly. My general workflow for writing a post for [this blog][MyBlog] looks like this:
 
 1. Create a post in `_posts`
 2. Write the post
 3. Run `fab sync`
 
-`fab sync` is a custom command that uses the magic of [Fabric](Fabric) to stage, commit and push changes in my blog repo to Github. Next, Fabric uses an ssh session in the Python process to connect to the server on which my blog is hosted, pull down the newest changes from the blog repo and finally, build the Jekyll blog so that the changes are immediately reflected on this site.
+Here is the repo
+
+`fab sync` is a custom command that uses the magic of [Fabric][Fabric] to stage, commit and push changes in my blog repo to Github. Next, Fabric uses an ssh session in the Python process to connect to the server on which my blog is hosted, pull down the newest changes from the blog repo and finally, build the Jekyll blog so that the changes are immediately reflected on this site.
 
 A nice part about Fabric is it requires relatively little code to accomplish a lot. It also integrates with the system ssh `config` so you don't need to supply server credentials in yet another place, you can just configure the Fabric env `hosts`.
 
@@ -74,6 +76,7 @@ A nice part about Fabric is it requires relatively little code to accomplish a l
 
 {% endhighlight %}
 
+[MyBlog]: https://github.com/danielcorin/my-blog
 [Fabric]: http://www.fabfile.org/
 
 Happy automating!
