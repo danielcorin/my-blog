@@ -147,7 +147,7 @@ defmodule SlackBot.Bot do
 end
 {% endhighlight %}
 
-According to the Slack API documentation for [files.upload](https://api.slack.com/methods/files.upload) pass three query parameters in our POST request to their API: a token, a file and a comma seperated value list of channels. When we call `upload_file` from our `CLI` module, we grab our Slack API token (assumed to be set as an environment variable `SLACK_TOKEN`; visit https://api.slack.com/tokens) to get a token) and pass in our file path and channel arguments from the `CLI`. Next, we build our URL, injecting the query parameters:
+According to the Slack API documentation for [files.upload](https://api.slack.com/methods/files.upload), we pass three query parameters in our POST request to their API: a token, a file and a comma seperated value list of channels. When we call `upload_file` from our `CLI` module, we grab our Slack API token (assumed to be set as an environment variable `SLACK_TOKEN`; visit https://api.slack.com/tokens) to get a token) and pass in our file path and channel arguments from the `CLI`. Next, we build our URL, injecting the query parameters:
 
     https://slack.com/api/files.upload?token=<token>&file=<file>&channels=<channels>
 
