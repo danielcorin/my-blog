@@ -46,7 +46,7 @@ Our app is going to need to make HTTP requests and parse JSON into Elixir data s
 
 Open `mix.exs` and modify the `application` and `deps` functions to look like this:
 
-```elixir
+{% highlight elixir %}
 def application do
   [applications: [:logger, :poison, :httpoison]]
 end
@@ -54,7 +54,7 @@ end
 defp deps do
   [{:httpoison, "~> 0.8.0"}, {:poison, "~> 2.0"}]
 end
-```
+{% endhighlight %}
 
 These lines define our app dependencies and instruct our program to use them.
 
@@ -64,7 +64,7 @@ Install the dependencies with
 
 Now open the `mix.ex` file. Since we are creating a CLI, modify the `project` function to look like this:
 
-```elixir
+{% highlight elixir %}
 def project do
   [app: :slack_bot,
    version: "0.0.1",
@@ -74,11 +74,11 @@ def project do
    start_permanent: Mix.env == :prod,
    deps: deps]
 end
-```
+{% endhighlight %}
 
 First, we will create our CLI parser, which is the entry point we defined in the `mix.exs` file. Open `lib/slack_bot/cli.ex` and add the following code:
 
-```elixir
+{% highlight elixir %}
 defmodule SlackBot.CLI do
   def main(args) do
     args |> parse_args |> process
@@ -112,13 +112,13 @@ defmodule SlackBot.CLI do
   end
 
 end
-```
+{% endhighlight %}
 
 This module defines our CLI behavior. Our `main` function is the entry point of the module. We take the input arguments to the program and pipe (`|>`) them through a series of functions to validate and execute the real work of the program.We use an `OptionParser` and parse for two flags, `--channel` and `--file` as defined in the `switches` list. We also alias these flags to the abbreviated versions `-c` and `-f` respectively. Finally, we process the arguments and if they meet our expected conditions (both flags present), we call our function to upload the file (`SlackBot.Bot.upload_file`), which we will define now.
 
 Open `lib/slack_bot/bot.ex` and add the following code:
 
-```elixir
+{% highlight elixir %}
 defmodule SlackBot.Bot do
   @url_upload "https://slack.com/api/files.upload"
 
@@ -145,7 +145,7 @@ defmodule SlackBot.Bot do
   end
 
 end
-```
+{% endhighlight %}
 
 According to the Slack API documentation for [files.upload](https://api.slack.com/methods/files.upload) pass three query parameters in our POST request to their API: a token, a file and a comma seperated value list of channels. When we call `upload_file` from our `CLI` module, we grab our Slack API token (assumed to be set as an environment variable `SLACK_TOKEN`; visit https://api.slack.com/tokens) to get a token) and pass in our file path and channel arguments from the `CLI`. Next, we build our URL, injecting the query parameters:
 
