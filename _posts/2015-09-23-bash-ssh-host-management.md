@@ -38,7 +38,7 @@ First, `cat ~/.ssh/config` creates a stream of our `config` file. Next, `awk '$1
 
 The output of the command is:
     
-    myserver='x.x.x.x'
+    myserver="x.x.x.x"
 
 for each of your `Host`s in your `config` file. *NOTE*: I recommend only using this trick for server names with exclusively alphanumeric characters. Otherwise, you may see strange errors like `-bash: <server_name>=<host_name>: command not found` when the shell initializes.
 

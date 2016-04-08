@@ -95,6 +95,6 @@ print evaluated"
 
 {% endhighlight %}
 
-Edit 7/23: changed `eval` to `evaluated` in the code to avoid ambiguity with the bash command
+Edit 7/23: changed `eval` to `evaluated` in the code to avoid conflict with the bash builtin.
 
 The script determines which copy commands to use based on your OS. The full script is available on [Github](https://github.com/danielcorin/qc).
