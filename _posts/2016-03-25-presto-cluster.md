@@ -18,7 +18,7 @@ There is a guide for how to download and setup Presto [here](https://prestodb.io
 
 This guide assumes you have machines runnning Java 8 that can interact with each other over port 8080. Some of the documentation for installation from Facebook is repeated for the sake of having all the instructions in one place. Additionally, you'll need to have data sources to which Presto can connect. See the full list on the [connectors page][connectors_link].
 
-## Install Presto
+### Install Presto
 
 Download Presto. These instructions are for version 0.142. You can find the most recent version and more deployment information [here](https://prestodb.io/docs/current/installation/deployment.html).
 
@@ -30,6 +30,8 @@ Download the CLI for the coordinator and name it `presto`
     $ wget https://repo1.maven.org/maven2/com/facebook/presto/presto-cli/0.142/presto-cli-0.142-executable.jar
     $ mv presto-cli-0.142-executable.jar presto
     $ chmod +x presto
+
+### Create configure files
 
 Create `etc` folder in `presto-server-0.142` directory
 Create `config.properties`, `jvm.config`, `log.properties`, and `node.properties` files.
@@ -100,6 +102,8 @@ Next we will create the `catalog` folder which tells Presto how to connect to va
 
 Consult the [connectors page][connectors_link] on how to write theses `properties` files. It may help to version control this folder to make it more easily distributable.
 
+### Start Presto
+
 Now that we've set up our coordinator and worker node(s), we can start the cluster. First SSH into and start the coordinator node:
 
     $ ./presto-server-0.142/bin/launcher.py start
@@ -121,7 +125,6 @@ Once you start the workers, you can use the Presto CLI on the coordinator to ens
      46001b10-fdcc-11e5-9797-0e75f1fc6277 | http://10.0.0.15:8080  | 0.142        | 
      c2334f0c-f04f-11e5-9e77-0e144badbcb1 | http://10.0.0.211:8080 | 0.142        | 
 
-Now you can use the Presto CLI on the coordinator to query data sources in the `catalog` using the Presto workers
-.
+Now you can use the Presto CLI on the coordinator to query data sources in the `catalog` using the Presto workers.
 
 [connectors_link]: https://prestodb.io/docs/current/connector.html
