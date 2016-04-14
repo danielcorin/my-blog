@@ -41,7 +41,9 @@ Modify `/usr/local/hadoop/etc/hadoop/core-site.xml` and add the following so we 
 Run Hive and `CREATE` and `EXTERNAL TABLE` to S3. Note: supply the path to the S3 folder container the `.json` file. We create a relational-like table out of the json, which we will unpack with Presto.
 
     $ hive
-    hive> CREATE EXTERNAL TABLE yelp_reviews (json_body string) stored as textfile location "s3://<path to S3 folder containing yelp_academic_dataset_review.json>";
+    hive> CREATE EXTERNAL TABLE yelp_reviews (json_body string)
+        stored as textfile
+        location "s3://<path to S3 folder containing yelp_academic_dataset_review.json>";
 
 ### Configure Presto to read from Hive
 
