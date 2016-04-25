@@ -75,26 +75,19 @@ import (
     "os"
 )
 
-const postMsgUrl string = "https://slack.com/api/chat.postMessage?"
+const slackUrl string = "https://slack.com/api/"
+const chatPostMsg string = "chat.postMessage"
 
 func SendMsg(msg, channel string) {
-    // check that token is set in environment
-    token := os.Getenv("SLACK_TOKEN")
-    if token == "" {
-        fmt.Println("Environment variable `SLACK_TOKEN` not set")
-        fmt.Println("Set with:")
-        fmt.Println("\texport SLACK_TOKEN=<token>")
-        return
-    }
+    token := getToken()
     // keys and values for query string parameters used in the API call
     paramMap := map[string]string{
         "token": token,
         "as_user": "true",
-        "text": url.QueryEscape(msg),
+        "text": msg,
         "channel": channel,
     }
-    url := buildUrl(paramMap)
-
+    url := buildUrl(slackUrl+chatPostMsg, paramMap)
     resp, err := http.Post(url, "application/json", nil)
     // handle and error calling `http.Post`
     if err != nil {
@@ -111,22 +104,30 @@ func SendMsg(msg, channel string) {
     }
 }
 
-// Build the URL using the parameters map
-// <key>=<value>&...
-func buildUrl(args map[string] string) string {
-    queryString := postMsgUrl
-    // counter to keep track of parameters pairs added to URL
-    i := 0
-    // build the url with "&" between each key value pair
-    for key, value := range args {
-        queryString += fmt.Sprintf("%s=%s", key, value)
-        i++
-        // add "&" after all pairs except the last one
-        if i < len(args) {
-            queryString += "&"
-        }
+// Build the URL using the parameters map and builtin URL library
+func buildUrl(urlString string, args map[string] string) string {
+    u, err := url.Parse(urlString)
+    if err != nil {
+        fmt.Println("Error parsing URL string")
     }
-    return queryString
+    v := url.Values{}
+    for key, value := range args {
+        v.Set(key, value)
+    }
+    u.RawQuery = v.Encode()
+    return u.String()
+}
+
+// check that token is set in environment
+func getToken() string {
+    token := os.Getenv("SLACK_TOKEN")
+    if token == "" {
+        fmt.Println("Environment variable `SLACK_TOKEN` not set")
+        fmt.Println("Set with:")
+        fmt.Println("\texport SLACK_TOKEN=<token>")
+        panic("Exiting")
+    }
+    return token
 }
 
 {% endhighlight %}
