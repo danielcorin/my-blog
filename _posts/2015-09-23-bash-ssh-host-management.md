@@ -14,7 +14,7 @@ An example ssh `config` file might look like this:
     Host myserver
         HostName x.x.x.x
         User ubuntu
-        IdentifyFile ~/.ssh/mypem.pem
+        IdentityFile ~/.ssh/mypem.pem
 
 We can use AWK to parse the `~/.ssh/config` file and create bash variables with the name of the `Host`s and the values of the `HostName` respectively.
 
@@ -38,9 +38,10 @@ First, `cat ~/.ssh/config` creates a stream of our `config` file. Next, `awk '$1
 
 The output of the command is:
     
-    myserver='x.x.x.x'
+    myserver="x.x.x.x"
 
-for each of your `Host`s in your `config` file.
+for each of your `Host`s in your `config` file. *NOTE*: I recommend only using this trick for server names with exclusively alphanumeric characters. Otherwise, you may see strange errors like `-bash: <server_name>=<host_name>: command not found` when the shell initializes.
+
 
 You can add this to your bash initialization to get access to all your `HostName`s as variables from your ssh `config`.
 
