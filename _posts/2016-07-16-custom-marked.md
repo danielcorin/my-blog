@@ -37,5 +37,5 @@ var htmlContent = marked(myContent, {
 //=> '<p><a href="https://google.com" target="_blank">Cool site</a></p>\n'
 {% endhighlight %}
 
-This solutions fits my needs. I can use the modified renderer on the pieces of content that need the additional attribute without breaking any of my other markdown. Best of all, I don't need any clever hacking to use Javascript to at the attribute to the links.
+This solutions fits my needs. I can use the modified renderer on the pieces of content that need the additional attribute without breaking any of my other markdown. Best of all, I don't need any clever hacking to add the attribute to the links.
 
