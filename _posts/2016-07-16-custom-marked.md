@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Phoenix Introduction"
-date:   2015-11-11 17:28:00
+title:  "Custom Markdown rendering"
+date:   2016-07-16 17:28:00
 categories: code
 ---
 
