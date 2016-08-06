@@ -38,7 +38,7 @@ Modify `/usr/local/hadoop/etc/hadoop/core-site.xml` and add the following so we 
         <value>your secret key</value>
     </property>
 
-Run Hive and `CREATE` and `EXTERNAL TABLE` to S3. Note: supply the path to the S3 folder container the `.json` file. We create a relational-like table out of the json, which we will unpack with Presto.
+Run Hive and `CREATE` an `EXTERNAL TABLE` that points to to S3. Note: supply the path to the S3 folder container the `.json` file. Here, we create a relational-like table out of the JSON, which we will unpack with Presto.
 
     $ hive
     hive> CREATE EXTERNAL TABLE yelp_reviews (json_body string)
