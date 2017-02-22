@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Go closures"
-date:   2016-02-15 21:00:00
+date:   2017-02-15 21:00:00
 categories: code
 ---
 
