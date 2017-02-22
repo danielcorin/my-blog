@@ -8,7 +8,7 @@ categories: code
 Querying S3 with Presto
 =======================
 
-This post assumes you have a an AWS account and a Presto instance (standalone or cluster) running. We'll use the Presto CLI to run the queries against the [Yelp dataset](https://www.yelp.com/dataset_challenge). The dataset is a JSON dump of a subset of Yelp's data for businesses, reviews, checkins, users and tips.
+This post assumes you have an AWS account and a Presto instance (standalone or cluster) running. We'll use the Presto CLI to run the queries against the [Yelp dataset](https://www.yelp.com/dataset_challenge). The dataset is a JSON dump of a subset of Yelp's data for businesses, reviews, checkins, users and tips.
 
 ### Configure Hive metastore
 
