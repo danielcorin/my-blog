@@ -40,10 +40,9 @@ Playground code [here](https://play.golang.org/p/HovGDCz2pm).
 
 The intent of the above is to create a `map[string]func()` where `functions["dev"]` returns `1` and `functions["prod"]` returns `2`. However, the above code prints the following when run:
 
-```
-1
-1
-```
+
+    1
+    1
 
 It turns out, the variable `value` isn't bound to the function until after exiting the loop. Because of this, all `func`s in `functions` return the value that `value` has during the last iteration of the loop. You can add a print statement to show that this is the case. Interestingly, adding a print statement also changes the order over which the map is iterated:
 
@@ -71,12 +70,12 @@ It turns out, the variable `value` isn't bound to the function until after exiti
     }
 
 Output:
-```
-1
-2
-2
-2
-```
+
+    1
+    2
+    2
+    2
+
 
 We confirm that both functions return the value that `value` has during the last iteration of the loop.
 
@@ -113,10 +112,10 @@ We can use a closure to get the behavior we want. That is, that each function re
 Playground code [here](https://play.golang.org/p/fZFCsux7ci).
 
 Output:
-```
-2
-1
-```
+
+    2
+    1
+
 
 Using the closure allows us to bind the loop variable to the function that we assign to the `functions` map, and we get our desired result.
 
