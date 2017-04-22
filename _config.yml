@@ -8,3 +8,6 @@ github_username:  danielcorin
 
 # Build settings
 markdown: kramdown
+
+gems:
+  - jekyll-gist

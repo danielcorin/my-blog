@@ -7,34 +7,38 @@ categories: code
 
 Say we need a map to store various versions of a configuration in Go. Here is a simple example of the structure:
 
+{% highlight go %}
+envs := map[string]string{
+    "dev":  "1",
+    "prod": "2",
+}
+{% endhighlight %}
+
+Given this config map, we need to create an additional map that uses the same strings as the keys, but has functions for values. The catch is that the body of each function needs to make use of the value from its corresponding key. For example, `functions["prod"]` should have a value of type `func() string` and the body of that function should make use of the value, `envs["prod"]`. Here's a concrete example:
+
+{% highlight go %}
+package main
+
+import (
+    "fmt"
+)
+
+func main() {
     envs := map[string]string{
         "dev":  "1",
         "prod": "2",
     }
-
-Given this config map, we need to create an additional map that uses the same strings as the keys, but has functions for values. The catch is that the body of each function needs to make use of the value from its corresponding key. For example, `functions["prod"]` should have a value of type `func() string` and the body of that function should make use of the value, `envs["prod"]`. Here's a concrete example:
-
-    package main
-
-    import (
-        "fmt"
-    )
-
-    func main() {
-        envs := map[string]string{
-            "dev":  "1",
-            "prod": "2",
-        }
-        functions := map[string]func() string{}
-        for env, value := range envs {
-            functions[env] = func() string {
-                return value
-            }
-        }
-        for _, function := range functions {
-            fmt.Printf("%s\n", function())
+    functions := map[string]func() string{}
+    for env, value := range envs {
+        functions[env] = func() string {
+            return value
         }
     }
+    for _, function := range functions {
+        fmt.Printf("%s\n", function())
+    }
+}
+{% endhighlight %}
 
 Playground code [here](https://play.golang.org/p/HovGDCz2pm).
 
@@ -46,28 +50,30 @@ The intent of the above is to create a `map[string]func()` where `functions["dev
 
 It turns out, the variable `value` isn't bound to the function until after exiting the loop. Because of this, all `func`s in `functions` return the value that `value` has during the last iteration of the loop. You can add a print statement to show that this is the case. Interestingly, adding a print statement also changes the order over which the map is iterated:
 
-    package main
+{% highlight go %}
+package main
 
-    import (
-        "fmt"
-    )
+import (
+    "fmt"
+)
 
-    func main() {
-        envs := map[string]string{
-            "dev":  "1",
-            "prod": "2",
-        }
-        functions := map[string]func() string{}
-        for env, value := range envs {
-        fmt.Println(value)
-            functions[env] = func() string {
-                return value
-            }
-        }
-        for _, function := range functions {
-            fmt.Printf("%s\n", function())
+func main() {
+    envs := map[string]string{
+        "dev":  "1",
+        "prod": "2",
+    }
+    functions := map[string]func() string{}
+    for env, value := range envs {
+    fmt.Println(value)
+        functions[env] = func() string {
+            return value
         }
     }
+    for _, function := range functions {
+        fmt.Printf("%s\n", function())
+    }
+}
+{% endhighlight %}
 
 Output:
 
@@ -81,33 +87,34 @@ We confirm that both functions return the value that `value` has during the last
 
 We can use a closure to get the behavior we want. That is, that each function returns the correct value from the initial map:
 
-    package main
+{% highlight go %}
+package main
 
-    import (
-        "fmt"
-    )
+import (
+    "fmt"
+)
 
-    func main() {
-        envs := map[string]string{
-            "dev":  "1",
-            "prod": "2",
-        }
-        functions := map[string]func() string{}
-        for env, value := range envs {
-            // create a function that returns a function
-            // then invoke it with the loop variable
-            functions[env] = func(value string) func() string {
-                return func() string {
-                    return value
-                }
-            }(value)
-
-        }
-        for _, function := range functions {
-            fmt.Printf("%s\n", function())
-        }
+func main() {
+    envs := map[string]string{
+        "dev":  "1",
+        "prod": "2",
     }
+    functions := map[string]func() string{}
+    for env, value := range envs {
+        // create a function that returns a function
+        // then invoke it with the loop variable
+        functions[env] = func(value string) func() string {
+            return func() string {
+                return value
+            }
+        }(value)
 
+    }
+    for _, function := range functions {
+        fmt.Printf("%s\n", function())
+    }
+}
+{% endhighlight %}
 
 Playground code [here](https://play.golang.org/p/fZFCsux7ci).
 
