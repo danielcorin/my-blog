@@ -2,8 +2,6 @@ from __future__ import with_statement
 from fabric.api import local, run, cd, env, abort
 from fabric.contrib.console import confirm
 
-import os
-
 # path to blog on my server
 from local_config import BLOG_DIR
 
@@ -13,6 +11,7 @@ env.use_ssh_config = True
 # specfic Host from ssh config
 env.hosts = ['dod']
 
+
 def add():
     '''
     Check git branch status.
@@ -20,7 +19,7 @@ def add():
     '''
     res = local('git status', capture=True)
     if 'Untracked files' in res or 'Changes not staged for commit' in res:
-        print res
+        print(res)
         if confirm('Changes not staged. Add files?'):
             local('git add .')
         else:
@@ -42,7 +41,7 @@ def deploy():
     code_dir = env.BLOG_DIR
     with cd(code_dir):
         res = run("git pull")
-        if not 'Already up-to-date.' in res:
+        if 'Already up-to-date.' not in res:
             run("jekyll build")
 
 
