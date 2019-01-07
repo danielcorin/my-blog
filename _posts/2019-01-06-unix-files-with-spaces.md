@@ -170,13 +170,12 @@ It's just not _that_ obvious that there is a space in there. Something like the 
 
 Unix makes this issue a little nastier because it has no problem allowing you to create file names with trailing spaces. We can fix our issue by running:
 
-```
-❯ cp test.json "test.json "
+    ❯ cp test.json "test.json "
 
-❯ go run program.go
->/Users/dancorin/Desktop/test.json <
-{Test:stuff}
-```
+    ❯ go run program.go
+    >/Users/dancorin/Desktop/test.json <
+    {Test:stuff}
+
 
 Or, more correctly, by fixing our `export` command"
 
